@@ -1,4 +1,5 @@
 // 06/2020
+// https://www.hackerrank.com/challenges/the-birthday-bar/problem
 
 #include <iostream>
 #include <algorithm>
