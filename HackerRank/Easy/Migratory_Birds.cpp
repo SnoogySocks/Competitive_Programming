@@ -1,4 +1,6 @@
 // 08/2020
+// https://www.hackerrank.com/challenges/migratory-birds/problem
+
 #include <bits/stdc++.h>
 
 using namespace std;
