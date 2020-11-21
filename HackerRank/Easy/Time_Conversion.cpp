@@ -1,4 +1,5 @@
-06/2020
+// 06/2020
+// https://www.hackerrank.com/challenges/time-conversion/problem
 
 #include <bits/stdc++.h>
 
