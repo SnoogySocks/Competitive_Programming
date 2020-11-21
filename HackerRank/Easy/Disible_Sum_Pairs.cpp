@@ -1,4 +1,5 @@
 // 05/2020
+// https://www.hackerrank.com/challenges/divisible-sum-pairs/problem
 
 #include <bits/stdc++.h>
 
