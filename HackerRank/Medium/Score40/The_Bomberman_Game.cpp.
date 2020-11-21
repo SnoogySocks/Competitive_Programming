@@ -1,0 +1,60 @@
+// 08/2020
+// https://www.hackerrank.com/challenges/bomber-man/problem
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int mxN = 202;
+
+int main() {
+
+    int r, c, n; scanf("%d%d%d", &r, &c, &n);
+    int rem = n&1;
+    if (n==1||rem==0) {
+        char temp[mxN-1]{};
+        if (n==1) {
+            for (int i = 0; i<r; i++) {
+                scanf("%s", temp);
+                puts(temp);
+            }
+        } else {
+            memset(temp, 'O', c);
+            for (int i = 0; i<r; i++) {
+                puts(temp);
+            }
+        }
+        return 0;
+    }
+
+    char grid[3][mxN][mxN+1]{};
+    char grid2[mxN][mxN+1]{};
+    int dy[] = {-1,0,1,0};
+    int dx[] = {0,1,0,-1};
+    r++, c++;
+    for (int i = 1; i<r; i++) {
+        scanf("%s", grid[0][i]+1);
+    }
+    for (int i = 1; i<3; i++) {
+        for (int y = 1; y<r; y++) {
+            memcpy(grid2[y]+1, grid[i-1][y]+1, c-1);
+            memset(grid[i][y]+1, 'O', c-1);
+        }
+        for (int y = 1; y<r; y++)
+            for (int x = 1; x<c; x++)
+                if (grid2[y][x]=='O') {
+                    grid[i][y][x] = grid2[y][x] = '.';
+                    for (int j = 0; j<4; j++) {
+                        grid[i][y+dy[j]][x+dx[j]] = grid2[y+dy[j]][x+dx[j]];
+                    }
+                }
+    }
+
+    rem = (n-1)/2&1?1:2;
+    for (int i = 1; i<r; i++) {
+        puts(grid[rem][i]+1);
+    }
+
+    return 0;
+    
+}
