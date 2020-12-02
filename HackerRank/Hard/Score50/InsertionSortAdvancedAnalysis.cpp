@@ -1,5 +1,5 @@
 // 12/2020
-// https://www.hackerrank.com/challenges/insertion-sort/submissions/code/190005446
+// https://www.hackerrank.com/challenges/insertion-sort/problem
 
 #include <bits/stdc++.h>
 
