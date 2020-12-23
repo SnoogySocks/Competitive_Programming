@@ -1,5 +1,5 @@
 // 12/23/2020
-// https://dmoj.ca/problem/gfssoc1j5/resubmit/2225022
+// https://dmoj.ca/problem/gfssoc1j5
 
 #include <iostream>
 #include <iomanip>
