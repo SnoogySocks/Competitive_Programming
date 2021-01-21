@@ -1,84 +1,44 @@
-// https://dmoj.ca/problem/dmopc19c2p2
-// 11/2020
-
-#include<iostream>
-#include<bits/stdc++.h>
-#include<iomanip>
-#include<algorithm>
-#include<cstdio>
-#include<cstring>
-#include<queue>
-#include<map>
-#include<cassert>
-#include<assert.h>
-#include<cmath>
-#include<random>
-#include<vector>
-#include<bitset>
-#include<set>
-#include<memory>
-#include<numeric>
-#include<functional>
-#include<cstdlib>
-#include<ctime>
-#include<list>
-#include<deque>
-#include<stack>
-#include<sstream>
-#include<math.h>
-#include <ctype.h>
-
-typedef long long ll;
-
-template <typename T> void sc(T &number) { bool negative = false; register int c; number = 0;  c = getchar(); if (c=='-') { negative = true;  c = getchar(); } for (; (c>47 && c<58); c=getchar()) number = number *10 + c - 48; if (negative) number *= -1; }
-
-#define fi(x, y) for(int i = x; i < y; i++)
-#define fj(x, y) for(int j = x; j < y; j++)
-#define mp make_pair
-#define MOD 1000000007
-#define endl "\n"
-#define print2dArr(a,r,c) cout << #a << ":\n"; for(int i = 0; i < r; i++) { for(int j = 0; j < c; j++) { cout << a[i][j] << " "; } cout << endl;}
-#define pi 2 * asin(1.0)
-#define elif else if
-#define pii pair<int, int>
-#define pq priority_queue
-// #define sc(n) scanf("%d", &n);
+#include <bits/stdc++.h>
 
 using namespace std;
 
-struct point
-{
-    int x, y;
-    point(int xx, int yy) {
-        x = xx;
-        y = yy;
-    }
-};
-/////////////////////////////////////////////////////////////////////////////////////////
-int dp[500][500];
+template<class T, class U> static inline void amax (T& a, U b) { if (a<b) a = b; }
+template<class T, class U> static inline void amin (T& a, U b) { if (a>b) a = b; }
+template<class T> void scan (T&n) { n = 0; bool neg = 0; char c = getchar(); if (c=='-') neg = 1, c = getchar(); for (; c<'0'||'9'<c; c = getchar()); for (; '0'<=c&&c<='9'; c = getchar())n = (n<<3)+(n<<1)+(c&15); if (neg) n *= -1; }
+template<class C, class S> void scan (C& c, S size) { for (S i = 0; i<size; i++) scan(c[i]); }
+void scan (char* c, int size, char&& escape = '\n') { if (c[0]) memset(c, 0, size); char buf; do buf = getchar(); while ((buf<'0'||'9'<buf)&&(buf<'A'||'Z'<buf)&&(buf<'a'||'z'<buf)); for (int i = 0; buf!=escape; buf = getchar())c[i++] = buf; if (c[size-1]) throw out_of_range("STRING SIZE TOO SMALL"); }
+template<class T> void print (T n, char&& end = '\n') { bool neg = 0; if (n<0) neg = 1, n *= -1; char snum[65]; int i = 0; do { snum[i++] = n%10+'0'; n /= 10; } while (n); i--; if (neg) putchar('-'); while (i>=0) putchar(snum[i--]); putchar(end); }
+template<class C, class S> void print (C c, S size) { for (int i = 0; i<size; i++) cout<<c[i]<<'\n'; }
+
+const int mxN = 500;
+const int mxM = 1e6;
+int a[mxN+1][mxN+1]{};
+int dp[mxN+1][mxN+1]{}; // Indexes correspond to r and c. Value is the distance traveled
+
 int main() {
-    int n, m;
-    sc(n);sc(m);
-    int arr[n][m];
-    fi(0, n) {
-        fj(0, m) {
-            sc(arr[i][j]);
+    int r, c;
+    scan(r),scan(c);
+    scan(a[0][0]);
+    dp[0][0] = a[0][0];
+    for (int j = 1; j<c; ++j) {
+        scan(a[0][j]);
+        dp[0][j] = dp[0][j-1]+a[0][j];
+    }
+    for (int i = 1; i<r; ++i) {
+        scan(a[i][0]);
+        dp[i][0] = dp[i-1][0]+a[i][0];
+        for (int j = 1; j<c; ++j) {
+            scan(a[i][j]);
         }
     }
-    dp[0][0] = arr[0][0];
-    fi(0, n) {
-        fj(0, m) {
-            if (i == 0 && j == 0) {
-                continue;
-            } elif (i == 0) {
-                dp[i][j] = arr[i][j] + dp[i][j - 1];
-            } elif (j == 0) {
-                dp[i][j] = dp[i - 1][j] + arr[i][j];
-            } else {
-                dp[i][j] = min(dp[i - 1][j] + arr[i][j], dp[i][j - 1] + arr[i][j]);
-            }
+    
+    for (int i = 1; i<r; ++i) {
+        for (int j = 1; j<c; ++j) {
+            dp[i][j] = min(dp[i-1][j], dp[i][j-1])+a[i][j];
         }
     }
-    printf("%d", dp[n - 1][m - 1]);
+    
+    cout<<dp[r-1][c-1]<<'\n';
+    
     return 0;
 }
