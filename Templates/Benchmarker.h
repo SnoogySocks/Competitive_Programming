@@ -1,7 +1,11 @@
 /*
-All credit for this Benchmarker goes to the YouTuber The Cherno.
-Link to video: https://www.youtube.com/watch?v=YG4jexlSAjc&t=483s
-*/
+* All credit for this Benchmarker goes to the YouTuber The Cherno.
+* Link to video: https://www.youtube.com/watch?v=YG4jexlSAjc&t=483s
+* 
+* How to Use:
+* Create an instance of Benchmarker within a scope that will be timed, 
+* and it will print out the results when the destructor is called.
+**/
 
 #pragma once
 #include <iostream>
