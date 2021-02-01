@@ -1,3 +1,7 @@
+/*
+* Fast I/O is a must as the standard iostreams std::cin and std::cout are very slow.
+*/
+
 #include <iostream>
 #include <iomanip>
 #include <algorithm>
