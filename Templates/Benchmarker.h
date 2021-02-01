@@ -1,3 +1,8 @@
+/*
+All credit for this Benchmarker goes to the YouTuber The Cherno.
+Link to video: https://www.youtube.com/watch?v=YG4jexlSAjc&t=483s
+*/
+
 #pragma once
 #include <iostream>
 #include <chrono>
