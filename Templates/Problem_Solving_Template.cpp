@@ -1,5 +1,7 @@
 /*
 * Fast I/O is a must as the standard iostreams std::cin and std::cout are very slow.
+* Additionally, the scan and print functions were not made by me.
+* Here is where I would put the source if I could remember where I got them from...
 */
 
 #include <iostream>
