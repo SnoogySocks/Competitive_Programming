@@ -18,6 +18,7 @@
 #include <stack>
 #include <queue>
 #include <deque>
+// Put #include<bits/stdc++.h> if your IDE has it. Mine doesn't so...
 
 using namespace std;
 typedef long long ll;
