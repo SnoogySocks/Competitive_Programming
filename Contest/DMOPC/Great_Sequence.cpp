@@ -1,0 +1,86 @@
+// https://dmoj.ca/submission/3463163
+// 02/2021
+
+#include <iostream>
+#include <iomanip>
+#include <algorithm>
+#include <string>
+#include <cstring>
+#include <array>
+#include <vector>
+#include <set>
+#include <map>
+#include <unordered_set>
+#include <unordered_map>
+#include <stack>
+#include <queue>
+#include <deque>
+#include <bitset>
+
+using namespace std;
+typedef long long ll;
+typedef pair<int, int> pii;
+typedef pair<ll, ll> pll;
+#define uset unordered_set
+#define umap unordered_map
+#define priq priority_queue
+#define vec vector
+#define all(x) begin(x), end(x)
+
+template<class T, class U> static inline void amax (T& a, U b) { if (a<b) a = b; }
+template<class T, class U> static inline void amin (T& a, U b) { if (a>b) a = b; }
+template<class T> void scan (T& n) { n = 0; bool neg = 0; char c = getchar(); if (c=='-') neg = 1, c = getchar(); for (; c<'0'||'9'<c; c = getchar()); for (; '0'<=c&&c<='9'; c = getchar()) n = (n<<3)+(n<<1)+(c&15); if (neg) n *= -1; }
+template<class T> void scan (T begin, T end) { while (begin!=end) scan(*begin++); }
+void scan (vector<char>& c, const char&& escape = ' ') { c.clear(); char buf; do buf = getchar(); while (buf<'!'||'~'<buf); for (; buf!='\n'&&buf!=escape; buf = getchar()) c.push_back(buf); c.push_back('\0'); }
+template<class T> void print (T n, char&& end = '\n') { bool neg = 0; if (n<0) neg = 1, n *= -1; char snum[65]; int i = 0; do { snum[i++] = n%10+'0'; n /= 10; } while (n); i--; if (neg) putchar('-'); while (i>=0) putchar(snum[i--]); putchar(end); }
+template<class T> void print (T begin, T end) { while (begin!=end) print(*begin++, ' '); putchar('\n'); }
+
+const int mxN = 1000;
+vec<int> psa;
+vec<vec<int>> cnt;
+
+bool exists (int l, int r, int val) {
+
+    val += mxN;
+    int left, mid, right;
+    left = 0;
+    right = cnt[val].size()-1;
+    
+    // val exists if it is found within l and r
+    while (left<=right) {
+        mid = left+(right-left)/2;
+        if (l<=cnt[val][mid]&&cnt[val][mid]<=r) return true;
+        else if (cnt[val][mid]<l) left = mid+1;
+        else if (cnt[val][mid]>r) right = mid-1;
+    }
+    return false;
+
+}
+
+void solve() {
+
+    int n, k, q; scan(n); scan(k); scan(q);
+    psa = vec<int>(n+1);
+    cnt = vec<vec<int>>(2*mxN+1);
+
+    for (int i = 1; i<=n; ++i) {
+        int input; scan(input);
+        psa[i] = psa[i-1]+input;
+        cnt[input+mxN].push_back(i);
+    }
+    while (q--) {
+        int a, b, l, r; scan(a); scan(b); scan(l); scan(r);
+        puts(psa[r]-psa[l-1]>k&&exists(l, r, a)&&exists(l, r, b)?"Yes":"No");
+    }
+
+}
+
+int main() {
+    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+#if 0
+    int t; scan(t); while(t--) solve();
+#else
+    solve();
+#endif
+    return 0; 
+}
