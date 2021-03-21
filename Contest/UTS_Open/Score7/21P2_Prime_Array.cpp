@@ -1,4 +1,4 @@
-//  https://dmoj.ca/problem/utso21p2
+// https://dmoj.ca/problem/utso21p2
 // 02/2021
 
 #include <iostream>
