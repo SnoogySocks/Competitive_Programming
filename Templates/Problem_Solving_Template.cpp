@@ -24,23 +24,22 @@ using namespace std; typedef unsigned int uint; typedef long long ll; typedef un
 #define vec vector
 #define all(x) begin(x), end(x)
 
-template<class T, class U> static inline void amax (T& a, U b) { if (a<b) a = b; }
-template<class T, class U> static inline void amin (T& a, U b) { if (a>b) a = b; }
-template<class T> static void scan (T& n) { n = 0; bool neg = false; char c = getchar(); if (c=='-') neg = true, c = getchar(); for (; c<'0'||'9'<c; c = getchar()); for (; '0'<=c&&c<='9'; c = getchar()) n = (n<<3)+(n<<1)+(c&15); if (neg) n *= -1; }
+template<class T> static void scan (T& e) { e = 0; bool neg = false; char c = getchar(); if (c == '-') neg = true, c = getchar(); for (; c < '0' || '9' < c; c = getchar()); for (; '0' <= c && c <= '9'; c = getchar()) e = (e << 3) + (e << 1) + (c & 15); if (neg) e *= -1; }
 template<class T> static void scan (vector<T>& v, const int&& start = 0) { for (int i = start; i<v.size(); ++i) scan(v[i]); }
-static void scan (vector<char>& c, const char&& escape = ' ', const bool&& add_null_terminator = false) { char buf; do buf = getchar(); while (buf<'!'||'~'<buf); int i; for (i = 0; buf!='\n'&&buf!=escape; buf = getchar()) c[i++] = buf; if (add_null_terminator) c[i] = '\0'; }
+static void scan (vector<char>& c, const char&& escape = ' ') { char buf; do buf = getchar(); while (buf<'!'||'~'<buf); int i; for (i = 0; buf!='\n'&&buf!=escape; buf = getchar()) c[i++] = buf; c[i] = '\0'; }
 template<class T, class U> static void scan (T& a, U& b) { scan(a); scan(b); } template<class T, class U, class V> static void scan (T& a, U& b, V& c) { scan(a, b); scan(c); } template<class T, class U, class V, class W> static void scan (T& a, U& b, V& c, W& d) { scan(a, b); scan(c, d); }
-template<class T> static void print (T n, char&& end = '\n') { bool neg = false; if (n<0) neg = true, n *= -1; char snum[65]; int i = 0; do { snum[i++] = n%10+'0'; n /= 10; } while (n); i--; if (neg) putchar('-'); while (i>=0) putchar(snum[i--]); putchar(end); }
-template<class T> void print (vector<T>& v) { for (T el:v) print(el, ' '); putchar('\n'); }
-template<class T> void print (vector<T>&& v) { print(v); }
+template<class T> static void print (T e, char&& end = '\n') { bool neg = false; if (e < 0) neg = true, e *= -1; char snum[65]; int i = 0; do { snum[i++] = e % 10 + '0'; e /= 10; } while (e); i--; if (neg) putchar('-'); while (i >= 0) putchar(snum[i--]); putchar(end); }
+static void print (char e, char&& end = '\n') { putchar(e); putchar(end); }
+template<class T> void print (vector<T>& v, char&& end = '\n') { for (const T& el:v) print(el, ' '); putchar(end); }
+template<class T> void print (vector<T>&& v, char&& end = '\n') { print(v); }
 
-void solve() {
+void solve () {
 
-
+    
 
 }
 
-int main() {
+int main () {
     ios_base::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
     solve();
     return 0;
