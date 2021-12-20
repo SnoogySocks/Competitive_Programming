@@ -16,6 +16,7 @@
 #include <tuple>
 #include <bitset>
 #include <climits>
+#include <cassert>
 
 using namespace std;
 typedef unsigned int uint;
