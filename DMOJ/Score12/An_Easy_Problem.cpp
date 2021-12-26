@@ -132,18 +132,18 @@ void solve () {
     // Map all the numbers to an index in cntDigits. Then maximum valid number would be
     // the number directly before it in the list, mapped to the lowest set bit.
     umap<int, vec<int>> cntDigits; cntDigits.reserve(mxN);
-//    for (int i = 0; i<mxN; ++i) {
-//        cntDigits[1<<i] = vec<int>();
-//    }
+    for (int i = 0; i<mxN; ++i) {
+        cntDigits[1<<i] = vec<int>();
+    }
 
     for (int i = 0; i<n; ++i) {
         scan(arr[i].first);
         int a = arr[i].first;
         while (a>0) {
             int bit = a&-a;
-            if (cntDigits.count(bit)==0) {
-                cntDigits[bit] = vec<int>();
-            }
+//            if (cntDigits.count(bit)==0) {
+//                cntDigits[bit] = vec<int>();
+//            }
             cntDigits[bit].push_back(i);
             arr[i].second.push_back((int) cntDigits[bit].size()-1); // Map arr[i] to an index in cntDigits
             a -= bit;
@@ -168,9 +168,38 @@ void solve () {
 
 }
 
+void solveBetter () {
+    int n; scan(n);
+    umap<int, int> dp(mxN);
+    for (int i = 0; i<mxN; ++i) {
+        dp[1<<i] = 0;
+    }
+    for (int i = 0; i<n; ++i) {
+        int a; scan(a);
+
+        // Find the maximum length of the numbers with that set bit before it
+        int mx = 0;
+        for (int j = a; j; j -= j&-j) {
+            mx = max(mx, dp[j&-j]+1);
+        }
+        // Assign all those numbers to the new maximum
+        for (int j = a; j; j -= j&-j) {
+            dp[j&-j] = mx;
+        }
+    }
+
+    int mx = 0;
+    for (auto [_, cnt]: dp) {
+        mx = max(mx, cnt);
+    }
+    print(mx);
+
+}
+
 int main () {
     ios_base::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
-    solve();
+//    solve();
+    solveBetter();
     // Generate random test cases of size 10
 //    int n = 4;
 //    vec<pair<int, vec<int>>> test(n);
