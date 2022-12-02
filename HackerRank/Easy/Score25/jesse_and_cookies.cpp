@@ -1,3 +1,6 @@
+// https://www.hackerrank.com/challenges/jesse-and-cookies/problem?isFullScreen=false
+// october 13, 2022
+
 #include <iostream>
 #include <iomanip>
 #include <algorithm>
@@ -45,7 +48,24 @@ template<class T> void print (vector<T>&& v, char&& end = '\n') { print(v); }
 
 void solve () {
 
-    cout<<"Hello World\n";
+    int n, k; scan(n, k);
+    priq<ll, vec<ll>, greater<ll>> pq;
+    for (int i = 0; i<n; ++i) {
+        int u; scan(u);
+        pq.push(u);
+    }
+
+    int i;
+    for (i = 0; pq.size()>1 && pq.top()<k; ++i) {
+        int u, v;
+        u = pq.top(); pq.pop();
+        v = pq.top(); pq.pop();
+        if (u>v) {
+            swap(u, v);
+        }
+        pq.push(u+2*v);
+    }
+    print(pq.size() && pq.top()>=k ? i : -1);
 
 }
 

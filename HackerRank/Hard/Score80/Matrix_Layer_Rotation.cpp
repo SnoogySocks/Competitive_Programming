@@ -23,12 +23,12 @@ void rotate (int k, int len) {
 
     pair<int, int> coor;
     int prev = a[k][k];
-    
+
     for (int i = 1; i<=len; i++) {
         coor = at(k, i);
         swap(prev, a[coor.first][coor.second]);
     }
-    
+
 }
 
 int main() {
@@ -57,5 +57,5 @@ int main() {
     }
 
     return 0;
-    
+
 }

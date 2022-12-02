@@ -1,3 +1,6 @@
+// https://www.hackerrank.com/challenges/king-richards-knights/problem
+// October 27, 2022
+
 #include <iostream>
 #include <iomanip>
 #include <algorithm>
@@ -43,10 +46,53 @@ static void print (char e, char&& end = '\n') { putchar(e); putchar(end); }
 template<class T> void print (vector<T>& v, char&& end = '\n') { for (const T& el: v) print(el, ' '); putchar(end); }
 template<class T> void print (vector<T>&& v, char&& end = '\n') { print(v); }
 
+void rotate (vec<vec<int>>& matrix, vec<vec<int>>& transpose, int a, int b, int d) {
+    // transpose the matrix
+    for (int i = a; i<=a+d; ++i) {
+        for (int j = b; j<=b+d; ++j) {
+            transpose[j][i] = matrix[i][j];
+        }
+    }
+
+    // Reflect the matrix
+    for (int i = 0; i<=d; ++i) {
+        for (int j = 0; j<=d; ++j) {
+            matrix[a+i][b+j] = transpose[b+i][d+a-j];
+            matrix[a+i][d+b-j] = transpose[b+i][a+j];
+        }
+    }
+}
+
 void solve () {
 
-    cout<<"Hello World\n";
+    int n, s; scan(n, s);
+    vec<vec<int>> matrix(n, vec<int>(n));
+    for (int i = 0; i<n; ++i) {
+        for (int j = 0; j<n; ++j) {
+            matrix[i][j] = i*n+j;
+        }
+    }
 
+    vec<vec<int>> transpose(n, vec<int>(n));
+    while (s--) {
+        int a, b, d;
+        scan(a, b, d);
+        rotate(matrix, transpose, a-1, b-1, d);
+    }
+
+    vec<pii> soldier_pos(n*n);
+    for (int i = 0; i<n; ++i) {
+        for (int j = 0; j<n; ++j) {
+            soldier_pos[matrix[i][j]] = make_pair(i+1, j+1);
+        }
+    }
+
+    int l; scan(l);
+    while (l--) {
+        int a; scan(a);
+        auto [r, c] = soldier_pos[a];
+        printf("%d %d\n", r, c);
+    }
 }
 
 int main () {

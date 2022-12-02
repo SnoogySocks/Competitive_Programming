@@ -1,3 +1,6 @@
+// https://cses.fi/problemset/task/1633
+// 13 october 2022
+
 #include <iostream>
 #include <iomanip>
 #include <algorithm>
@@ -43,9 +46,22 @@ static void print (char e, char&& end = '\n') { putchar(e); putchar(end); }
 template<class T> void print (vector<T>& v, char&& end = '\n') { for (const T& el: v) print(el, ' '); putchar(end); }
 template<class T> void print (vector<T>&& v, char&& end = '\n') { print(v); }
 
+const int mxN = 1e9+7;
+
 void solve () {
 
-    cout<<"Hello World\n";
+    int n; scan(n);
+    vec<int> dp(n+1);
+    dp[0] = 1;
+    for (int sum = 1; sum<=n; ++sum) {
+        for (int roll = 1; roll<=6; ++roll) {
+            if (sum-roll>=0)
+                dp[sum] = (dp[sum]+dp[sum-roll])%mxN;
+        }
+    }
+    :q
+:q
+    print(dp[n]);
 
 }
 
