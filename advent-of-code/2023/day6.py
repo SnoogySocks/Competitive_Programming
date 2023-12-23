@@ -7,16 +7,49 @@ import re
 
 
 def p2():
-    pass
+    # [0] - time
+    # [1] - record distance
+    races = [[] for _ in range(len(arr[0].split()))]
+    for line in arr:
+        for i, race in enumerate(line.split()):
+            races[i].append(int(race))
+    races = list(map(tuple, races))
+
+    num_ways_to_win = [0]*len(races)
+    for i, race in enumerate(races):
+        time, record = race
+        for j in range(1, time+1):
+            if (time - j)*j > record:
+                num_ways_to_win[i] += 1
+
+    ic(num_ways_to_win)
+    prod = 1
+    for a in num_ways_to_win:
+        prod *= a
+    print(prod)
 
 
 def p1():
+    # [0] - time
+    # [1] - record distance
     races = [[] for _ in range(len(arr[0].split()))]
-    for i, line in enumerate(arr):
-        a = line.split()
-        races[i].append(int(a[i]))
+    for line in arr:
+        for i, race in enumerate(line.split()):
+            races[i].append(int(race))
+    races = list(map(tuple, races))
 
-    ic(races)
+    num_ways_to_win = [0]*len(races)
+    for i, race in enumerate(races):
+        time, record = race
+        for j in range(1, time+1):
+            if (time - j)*j > record:
+                num_ways_to_win[i] += 1
+
+    ic(num_ways_to_win)
+    prod = 1
+    for a in num_ways_to_win:
+        prod *= a
+    print(prod)
 
 
 def main():
@@ -38,14 +71,14 @@ def main():
 
 
 test = """
-7  15   30
-9  40  200
+71530
+940200
 """
 
 
 prod = """
- 46     82     84     79
-347   1522   1406   1471
+ 46828479
+347152214061471
 """
 
 
