@@ -22,9 +22,9 @@ def main():
     TEST_STATE = sys.argv[1]
 
     if TEST_INPUT_STATE == "test":
-        inps = [test]
+        inps = tests
     if TEST_INPUT_STATE == "prod":
-        inps = [prod]
+        inps = prod
 
     global arr
     for inp in inps:
@@ -35,16 +35,16 @@ def main():
             p2()
 
 
-test = """
+tests = [
 """
+""",
+]
 
 
-test2 = """
+prod = [
 """
-
-
-prod = """
 """
+]
 
 
 if __name__ == "__main__":
