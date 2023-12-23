@@ -4,6 +4,8 @@ from collections import deque
 from dataclasses import dataclass
 from typing import Tuple
 import re
+from tqdm import tqdm
+from math import gcd
 
 
 def p2():
