@@ -22,7 +22,7 @@ def main():
     TEST_STATE = sys.argv[1]
 
     if TEST_INPUT_STATE == "test":
-        inps = [test, test2]
+        inps = [test]
     if TEST_INPUT_STATE == "prod":
         inps = [prod]
 
@@ -35,9 +35,9 @@ def main():
             p2()
 
 
-
 test = """
 """
+
 
 test2 = """
 """
