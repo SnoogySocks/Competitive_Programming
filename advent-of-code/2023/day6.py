@@ -11,11 +11,16 @@ def p2():
 
 
 def p1():
-    pass
+    races = [[] for _ in range(len(arr[0].split()))]
+    for i, line in enumerate(arr):
+        a = line.split()
+        races[i].append(int(a[i]))
+
+    ic(races)
 
 
 def main():
-    assert len(sys.argv) == 2
+    assert len(sys.argv) == 3
     TEST_INPUT_STATE = sys.argv[1]
     TEST_STATE = sys.argv[2]
 
@@ -33,14 +38,14 @@ def main():
 
 
 test = """
-Time:      7  15   30
-Distance:  9  40  200
+7  15   30
+9  40  200
 """
 
 
 prod = """
-Time:        46     82     84     79
-Distance:   347   1522   1406   1471
+ 46     82     84     79
+347   1522   1406   1471
 """
 
 

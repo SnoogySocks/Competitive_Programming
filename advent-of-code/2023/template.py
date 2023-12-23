@@ -15,7 +15,7 @@ def p1():
 
 
 def main():
-    assert len(sys.argv) == 2
+    assert len(sys.argv) == 3
     TEST_INPUT_STATE = sys.argv[1]
     TEST_STATE = sys.argv[2]
 
