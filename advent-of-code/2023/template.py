@@ -20,19 +20,24 @@ def main():
     TEST_STATE = sys.argv[1]
 
     if TEST_INPUT_STATE == "test":
-        inp = test
-    elif TEST_INPUT_STATE == "prod":
-        inp = prod
+        inps = [test, test2]
+    if TEST_INPUT_STATE == "prod":
+        inps = [prod]
 
     global arr
-    arr = [s.strip() for s in inp.split("\n")[1:-1]]
-    if TEST_STATE == "p1":
-        p1()
-    elif TEST_STATE == "p2":
-        p2()
+    for inp in inps:
+        arr = [s.strip() for s in inp.split("\n")[1:-1]]
+        if TEST_STATE == "p1":
+            p1()
+        elif TEST_STATE == "p2":
+            p2()
+
 
 
 test = """
+"""
+
+test2 = """
 """
 
 
