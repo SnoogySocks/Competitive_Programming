@@ -18,6 +18,7 @@ def p1():
 
 def main():
     assert len(sys.argv) == 3
+    sys.setrecursionlimit(5000)
     TEST_INPUT_STATE = sys.argv[2]
     TEST_STATE = sys.argv[1]
 
