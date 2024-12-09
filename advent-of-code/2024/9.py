@@ -28,7 +28,13 @@ def main():
             right -= 1
             continue
         inp[left], inp[right] = inp[right], inp[left]
-    print(inp)
+
+    ans = 0
+    for i in range(len(inp)):
+        if inp[i] == ".":
+            continue
+        ans += i * int(inp[i])
+    print(ans)
 
 
 test = """2333133121414131402"""
