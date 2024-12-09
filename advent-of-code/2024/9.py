@@ -7,42 +7,57 @@ def main():
     """
     2 pointers, left for next free space and right for file right most file block
     """
-    og_inp = test2
+    og_inp = test
     inp = []
     id = 0
     for i in range(0, len(og_inp), 2):
         if i + 1 < len(og_inp):
-            inp.extend([id] * int(og_inp[i]))
-            inp.extend(["."] * int(og_inp[i + 1]))
+            inp.append([id, int(og_inp[i])])
+            inp.append([".", int(og_inp[i + 1])])
         else:
-            inp.extend([id] * int(og_inp[i]))
+            inp.append([id, int(og_inp[i])])
         id += 1
 
-    print(inp)
+    # print(inp)
     inp = list(inp)
-    left = 0
     right = len(inp) - 1
 
-    while left < right:
-        if inp[left] != ".":
-            left += 1
-            continue
-        if inp[right] == ".":
+    while 0 < right:
+        # print(inp)
+        if inp[right][0] == ".":
             right -= 1
             continue
-        inp[left], inp[right] = inp[right], inp[left]
-        left += 1
+        # should swap
+        found = None
+        for i in range(right):
+            if inp[i][0] == "." and inp[i][1] >= inp[right][1]:
+                found = i
+                break
+
+        if found:
+            print(inp)
+            assert inp[found][0] == "."
+            inp[found][1] -= inp[right][1]
+            assert inp[right][0] != "."
+            inp.insert(found, list(inp[right]))
+            right += 1
+            inp[right][0] = "."
+            print("yes")
+            print(inp)
+
         right -= 1
 
-    ans = 0
-    has_seen = False
+    ans_inp = ""
     for i in range(len(inp)):
-        if inp[i] == ".":
-            has_seen = True
+        ans_inp += str(inp[i][0]) * inp[i][1]
+    print(ans_inp)
+
+    ans = 0
+    for i in range(len(ans_inp)):
+        if ans_inp[i] == ".":
             continue
-        ans += i * int(inp[i])
+        ans += i * int(ans_inp[i])
         # print(i * int(inp[i]))
-        assert not has_seen
     print(ans)
 
 
