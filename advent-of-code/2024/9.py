@@ -22,35 +22,45 @@ def main():
     inp = list(inp)
     right = len(inp) - 1
 
+    # ans_inp = ""
+    # for i in range(len(inp)):
+    #     ans_inp += str(inp[i][0]) * inp[i][1]
+    # print(ans_inp)
+
+    moved = set()
+
     while 0 < right:
         # print(inp)
-        if inp[right][0] == ".":
+        if inp[right][0] == "." or inp[right][0] in moved:
             right -= 1
             continue
         # should swap
         found = None
+        num = len(str(inp[right][0])) * inp[right][1]
         for i in range(right):
-            if inp[i][0] == "." and inp[i][1] >= inp[right][1]:
+            if inp[i][0] == "." and inp[i][1] >= num:
                 found = i
                 break
 
         if found:
-            print(inp)
+            # print(inp)
             assert inp[found][0] == "."
-            inp[found][1] -= inp[right][1]
+            inp[found][1] -= num
             assert inp[right][0] != "."
+            moved.add(inp[right][0])
             inp.insert(found, list(inp[right]))
             right += 1
             inp[right][0] = "."
-            print("yes")
-            print(inp)
+            inp[right][1] = num
+            # print("yes")
+            # print(inp)
 
         right -= 1
 
     ans_inp = ""
     for i in range(len(inp)):
         ans_inp += str(inp[i][0]) * inp[i][1]
-    print(ans_inp)
+    # print(ans_inp)
 
     ans = 0
     for i in range(len(ans_inp)):
